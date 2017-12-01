@@ -24,8 +24,15 @@
                             <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="20"/>
                         </label>
                         <label width="134" height="19" alignment="left" text="USD" textAlignment="center" baselineAdjustment="alignCenters" id="yWX-0D-rDo"/>
-                        <button width="1" alignment="left" title="刷新" id="w4f-Na-aUa"/>
+                        <button width="1" alignment="left" title="刷新" id="w4f-Na-aUa">
+                            <connections>
+                                <action selector="getPrice" destination="AgC-eL-Hgc" id="3Xz-Ol-ArB"/>
+                            </connections>
+                        </button>
                     </items>
+                    <connections>
+                        <outlet property="cryptoCurrencyLabel" destination="h4c-xC-lSG" id="25Y-Hq-MCs"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
