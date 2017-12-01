@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13507"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ArialHB.ttc">
+            <string>ArialHebrew-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
@@ -15,7 +20,9 @@
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="BTCPrice_WatchKit_App" customModuleProvider="target">
                     <items>
                         <label alignment="left" text="比特幣當前價格" id="YCq-fg-8cc"/>
-                        <label width="136" height="20" alignment="left" text="0.00" textAlignment="center" id="h4c-xC-lSG"/>
+                        <label width="136" height="20" alignment="left" text="0.00" textAlignment="center" id="h4c-xC-lSG">
+                            <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="20"/>
+                        </label>
                         <label width="134" height="19" alignment="left" text="USD" textAlignment="center" baselineAdjustment="alignCenters" id="yWX-0D-rDo"/>
                         <button width="1" alignment="left" title="刷新" id="w4f-Na-aUa"/>
                     </items>
