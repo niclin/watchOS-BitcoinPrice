@@ -62,6 +62,5 @@ class InterfaceController: WKInterfaceController {
             }
         }.resume()
     }
-    
 
 }
