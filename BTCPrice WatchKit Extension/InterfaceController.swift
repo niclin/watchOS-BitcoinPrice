@@ -19,8 +19,7 @@ class InterfaceController: WKInterfaceController {
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        // Configure interface objects here.
+        updateBitcoinPrice()
     }
     
     override func willActivate() {
@@ -40,12 +39,12 @@ class InterfaceController: WKInterfaceController {
     // MARK: - Interactions
     
     @IBAction func getPrice() {
-        fetchPrice()
+        updateBitcoinPrice()
     }
     
-    // MARK: - Function
+    // MARK: - Functions
     
-    func fetchPrice(){
+    func updateBitcoinPrice() {
         
         // Coinmarketcap
         guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/?limit=10") else { return }
@@ -54,7 +53,6 @@ class InterfaceController: WKInterfaceController {
             guard let data = data else { return }
             
             do {
-                
                 let crypto_currency = try JSONDecoder().decode([CryptoCurrency].self, from: data)
                 
                 self.cryptoCurrencyLabel.setText(crypto_currency.first?.price_usd ?? "0.00")
