@@ -9,6 +9,11 @@
 import WatchKit
 import Foundation
 
+struct CryptoCurrency: Decodable {
+    let name: String
+    let price_usd: String
+}
+
 
 class InterfaceController: WKInterfaceController {
 
@@ -42,25 +47,26 @@ class InterfaceController: WKInterfaceController {
     
     func fetchPrice(){
         
-        // Test use Bitoex exchange
-        guard let url = URL(string: "https://poloniex.com/public?command=return24hVolume") else { return }
+        // Coinmarketcap
+        guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/?limit=10") else { return }
         
-        let session = URLSession.shared
-        session.dataTask(with: url) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
             
-            if let data = data {
-                print(data)
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                } catch {
-                    print(error)
-                }
+            do {
+                
+                let crypto_currency = try JSONDecoder().decode([CryptoCurrency].self, from: data)
+                
+                self.cryptoCurrencyLabel.setText(crypto_currency.first?.price_usd ?? "0.00")
+                
+                //Swift 2/3/ObjC
+//                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
+//
+//                let crypto_currency = CryptoCurrency(json: json)
+                
+            } catch let jsonErr {
+                print("Error serializing json:", jsonErr)
             }
         }.resume()
     }
-
 }
