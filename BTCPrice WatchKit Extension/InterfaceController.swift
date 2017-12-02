@@ -45,6 +45,7 @@ class InterfaceController: WKInterfaceController {
     // MARK: - Functions
     
     func updateBitcoinPrice() {
+        self.cryptoCurrencyLabel.setText("Fetching...")
         
         // Coinmarketcap
         guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/?limit=10") else { return }
@@ -55,7 +56,9 @@ class InterfaceController: WKInterfaceController {
             do {
                 let crypto_currency = try JSONDecoder().decode([CryptoCurrency].self, from: data)
                 
-                self.cryptoCurrencyLabel.setText(crypto_currency.first?.price_usd ?? "0.00")
+                let btc_price = crypto_currency.first?.price_usd ?? "0.00"
+                
+                self.cryptoCurrencyLabel.setText("\(btc_price) USD")
                 
                 //Swift 2/3/ObjC
 //                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
