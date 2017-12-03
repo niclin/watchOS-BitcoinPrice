@@ -58,10 +58,12 @@ class InterfaceController: WKInterfaceController {
             
             do {
                 let crypto_currency = try JSONDecoder().decode([CryptoCurrency].self, from: data)
-                print(crypto_currency)
-                let btc_price = crypto_currency.first?.price_usd ?? "0.00"
+                
+                let btc_price = crypto_currency.first { $0.name == "Bitcoin" }?.price_usd ?? "0.00"
+                let eth_price = crypto_currency.first { $0.name == "Ethereum" }?.price_usd ?? "0.00"
                 
                 self.bitcoinLabel.setText("\(btc_price) USD")
+                self.ethLabel.setText("\(eth_price) USD")
                 self.refreshButton.setTitle("刷新")
                 self.refreshButton.setEnabled(true)
                 
