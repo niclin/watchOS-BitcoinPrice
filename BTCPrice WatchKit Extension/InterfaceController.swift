@@ -33,11 +33,11 @@ class InterfaceController: WKInterfaceController {
     }
     
     // MARK: - Outlets
-    
-    @IBOutlet var cryptoCurrencyLabel: WKInterfaceLabel!
+    @IBOutlet var bitcoinLabel: WKInterfaceLabel!
+    @IBOutlet var ethLabel: WKInterfaceLabel!
+    @IBOutlet var refreshButton: WKInterfaceButton!
     
     // MARK: - Interactions
-    
     @IBAction func getPrice() {
         updateBitcoinPrice()
     }
@@ -45,7 +45,10 @@ class InterfaceController: WKInterfaceController {
     // MARK: - Functions
     
     func updateBitcoinPrice() {
-        self.cryptoCurrencyLabel.setText("Fetching...")
+        refreshButton.setTitle("刷新中...")
+        refreshButton.setEnabled(false)
+        bitcoinLabel.setText("-- USD")
+        ethLabel.setText("-- USD")
         
         // Coinmarketcap
         guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/?limit=10") else { return }
@@ -55,10 +58,12 @@ class InterfaceController: WKInterfaceController {
             
             do {
                 let crypto_currency = try JSONDecoder().decode([CryptoCurrency].self, from: data)
-                
+                print(crypto_currency)
                 let btc_price = crypto_currency.first?.price_usd ?? "0.00"
                 
-                self.cryptoCurrencyLabel.setText("\(btc_price) USD")
+                self.bitcoinLabel.setText("\(btc_price) USD")
+                self.refreshButton.setTitle("刷新")
+                self.refreshButton.setEnabled(true)
                 
                 //Swift 2/3/ObjC
 //                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }

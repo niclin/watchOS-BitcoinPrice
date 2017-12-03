@@ -23,6 +23,10 @@
                         <label width="136" height="23" alignment="left" text="0.00 USD" textAlignment="right" id="h4c-xC-lSG">
                             <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="22"/>
                         </label>
+                        <label width="136" alignment="left" text="以太坊當前價格" textAlignment="center" id="cQr-Kn-M6r"/>
+                        <label width="136" alignment="left" text="0.00 USD" textAlignment="right" id="8Jb-zn-w0b">
+                            <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="22"/>
+                        </label>
                         <button width="1" alignment="left" title="刷新" id="w4f-Na-aUa">
                             <connections>
                                 <action selector="getPrice" destination="AgC-eL-Hgc" id="3Xz-Ol-ArB"/>
@@ -30,7 +34,9 @@
                         </button>
                     </items>
                     <connections>
-                        <outlet property="cryptoCurrencyLabel" destination="h4c-xC-lSG" id="25Y-Hq-MCs"/>
+                        <outlet property="bitcoinLabel" destination="h4c-xC-lSG" id="4Ew-gJ-hUf"/>
+                        <outlet property="ethLabel" destination="8Jb-zn-w0b" id="PZt-dT-fXf"/>
+                        <outlet property="refreshButton" destination="w4f-Na-aUa" id="AOv-h7-wcW"/>
                     </connections>
                 </controller>
             </objects>
